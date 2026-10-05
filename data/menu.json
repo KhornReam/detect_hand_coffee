@@ -1,0 +1,222 @@
+{
+  "currency": "USD",
+  "fees": {
+    "service": 0
+  },
+  "products": [
+    {
+      "id": "americano",
+      "name": "Americano",
+      "category": "Espresso",
+      "description": "Double espresso softened with hot water. Clear, balanced, quietly bold.",
+      "price": 2,
+      "image": "/img/coffee2.png",
+      "available": true,
+      "customizations": [
+        "size",
+        "temperature",
+        "sugar",
+        "milk",
+        "addons"
+      ]
+    },
+    {
+      "id": "latte",
+      "name": "Latte",
+      "category": "Latte",
+      "description": "Silky steamed milk meets our signature double espresso.",
+      "price": 2.5,
+      "image": "/img/coffee3.png",
+      "available": true,
+      "customizations": [
+        "size",
+        "temperature",
+        "sugar",
+        "milk",
+        "addons"
+      ]
+    },
+    {
+      "id": "cappuccino",
+      "name": "Cappuccino",
+      "category": "Cappuccino",
+      "description": "A rich espresso base, velvety milk and a cloud of fine foam.",
+      "price": 2.75,
+      "image": "/img/coffee7.png",
+      "available": true,
+      "customizations": [
+        "size",
+        "temperature",
+        "sugar",
+        "milk",
+        "addons"
+      ]
+    },
+    {
+      "id": "mocha",
+      "name": "Mocha",
+      "category": "Mocha",
+      "description": "Espresso and dark chocolate wrapped in creamy steamed milk.",
+      "price": 3,
+      "image": "/img/coffee1.png",
+      "available": true,
+      "customizations": [
+        "size",
+        "temperature",
+        "sugar",
+        "milk",
+        "addons"
+      ]
+    },
+    {
+      "id": "matcha-latte",
+      "name": "Matcha Latte",
+      "category": "Matcha",
+      "description": "Ceremonial-style green tea, whisked smooth with creamy milk.",
+      "price": 3,
+      "image": "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=900&q=85",
+      "available": true,
+      "customizations": [
+        "size",
+        "temperature",
+        "sugar",
+        "milk",
+        "addons"
+      ]
+    },
+    {
+      "id": "iced-tea",
+      "name": "Iced Tea",
+      "category": "Tea",
+      "description": "Slow-steeped black tea poured over ice. Bright and refreshing.",
+      "price": 2,
+      "image": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&q=85",
+      "available": true,
+      "customizations": [
+        "size",
+        "temperature",
+        "sugar",
+        "addons"
+      ]
+    }
+  ],
+  "options": {
+    "size": [
+      {
+        "id": "small",
+        "label": "Small",
+        "price": 0
+      },
+      {
+        "id": "medium",
+        "label": "Medium",
+        "price": 0.5
+      },
+      {
+        "id": "large",
+        "label": "Large",
+        "price": 1
+      }
+    ],
+    "temperature": [
+      {
+        "id": "hot",
+        "label": "Hot",
+        "price": 0
+      },
+      {
+        "id": "iced",
+        "label": "Iced",
+        "price": 0
+      }
+    ],
+    "sugar": [
+      {
+        "id": "none",
+        "label": "No sugar",
+        "price": 0
+      },
+      {
+        "id": "low",
+        "label": "Low",
+        "price": 0
+      },
+      {
+        "id": "normal",
+        "label": "Normal",
+        "price": 0
+      },
+      {
+        "id": "extra",
+        "label": "Extra",
+        "price": 0
+      }
+    ],
+    "milk": [
+      {
+        "id": "regular",
+        "label": "Regular milk",
+        "price": 0
+      },
+      {
+        "id": "oat",
+        "label": "Oat milk",
+        "price": 0.5
+      },
+      {
+        "id": "almond",
+        "label": "Almond milk",
+        "price": 0.5
+      },
+      {
+        "id": "soy",
+        "label": "Soy milk",
+        "price": 0.5
+      }
+    ],
+    "addons": [
+      {
+        "id": "shot",
+        "label": "Extra espresso shot",
+        "price": 0.75
+      },
+      {
+        "id": "whip",
+        "label": "Whipped cream",
+        "price": 0.5
+      },
+      {
+        "id": "caramel",
+        "label": "Caramel",
+        "price": 0.5
+      },
+      {
+        "id": "vanilla",
+        "label": "Vanilla",
+        "price": 0.5
+      },
+      {
+        "id": "chocolate",
+        "label": "Chocolate",
+        "price": 0.5
+      }
+    ]
+  },
+  "categories": [
+    "Espresso",
+    "Latte",
+    "Cappuccino",
+    "Mocha",
+    "Matcha",
+    "Tea",
+    "O"
+  ],
+  "contact": {
+    "name": "Brew & Co.",
+    "email": "",
+    "phone": "",
+    "address": "",
+    "hours": "",
+    "website": ""
+  }
+}

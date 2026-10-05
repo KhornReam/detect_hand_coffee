@@ -1,0 +1,9 @@
+.venv/
+.env
+__pycache__/
+*.py[cod]
+data/orders.sqlite3
+data/orders.sqlite3-shm
+data/orders.sqlite3-wal
+data/admin_signing.key
+.DS_Store
