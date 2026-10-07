@@ -79,9 +79,10 @@ body:has(.story-home) .cart-button b{background:#e8dfd2;color:#49382e}
 .story-secondary-button{margin-top:12px;border:1px solid #d5c9bb;background:transparent;color:#49382b;gap:10px}
 .story-gallery-section{background:#eee8e1}
 .story-gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
-.gallery-tile{height:230px;margin:0;position:relative;overflow:hidden;border-radius:5px;background:#a38e85}
+.gallery-tile{height:230px;margin:0;position:relative;overflow:hidden;border-radius:5px;background:#a38e85;cursor:pointer}
 .gallery-tile img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
 .gallery-tile:hover img{transform:scale(1.05)}
+.gallery-tile:focus-visible{outline:3px solid var(--green,#3e7c4f);outline-offset:2px}
 .gallery-tile:after{content:'';position:absolute;inset:40% 0 0;background:linear-gradient(transparent,#21170db0)}
 .gallery-tile figcaption{position:absolute;left:14px;bottom:13px;z-index:1;color:white;font:500 16px 'Playfair Display',serif}
 .story-contact-section{padding:77px 20px 82px;text-align:center;background:#3b2a20;color:#fff9f1;scroll-margin-top:70px}
@@ -129,3 +130,7 @@ body:has(.hand-hover) .hand-pointer{background:#168451;border-color:#eafff1;box-
 
 .gesture-emoji{display:inline-block;font-size:30px;line-height:1;color:#a16d47}
 
+
+.touchless-toggle[aria-pressed='true']{background:#eaf2ec;border-color:#d4e2d7;color:#3f7352}.voice-status{position:absolute;top:calc(100% + 5px);right:24px;padding:5px 9px;border-radius:12px;background:#fffaf4;color:var(--muted);font:10px 'DM Sans';white-space:nowrap;box-shadow:0 2px 9px #20140f12}.touchless-toggle{min-width:78px}@media(max-width:680px){.voice-status{right:12px;top:calc(100% + 2px)}.touchless-toggle{font-size:9px;padding:0 9px;min-height:34px}}
+
+.voice-help{margin:20px 0;padding:20px 22px;background:#f4eee5;border-left:3px solid #b98055}.voice-help b{font:700 10px 'DM Sans';letter-spacing:1.2px;color:#895c3e}.voice-help p{margin:10px 0;color:var(--muted);font:12px/1.7 'DM Sans'}.voice-help small{color:var(--brown);font:10px 'DM Sans'}

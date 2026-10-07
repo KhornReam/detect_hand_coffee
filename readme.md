@@ -39,6 +39,8 @@ Hand controls work across the customer ordering pages. Choose **Camera & gesture
 
 No extra Python computer-vision packages are required for browser hand controls. Touch, mouse and keyboard ordering always work.
 
+Voice control is available from the **Voice control** button in the header on browsers that expose the Web Speech recognition API. Starting it requests microphone access; the status label reports listening, recognized commands, and permission or availability errors. Commands include “go home,” “open menu,” “next coffee,” “show me Latte,” “large,” “less sugar,” “add to cart,” “open cart,” “checkout,” “cancel,” “contact,” “sign in,” “register,” “refresh,” “sign out,” and “confirm order.” Slightly misheard drink names still match the menu, and the kiosk keeps listening after pauses until you press Stop voice. Commands are interpreted against the current page, so product customizations only apply while a drink is open, and customer commands are ignored inside the admin workspace — which instead answers “orders,” “products,” “categories,” “contact,” “messages,” “users,” “settings,” and “refresh.” A held fist (or “cancel”) steps back from any customer page — customization, bag, checkout, receipt, contact, sign in or admin sign in — without clearing the bag. Gallery photos open the drink they show. The **Sound on/off** control toggles short interface tones. Spoken responses follow Voice control and are disabled when listening is stopped. Speech recognition support and availability depend on the browser and device.
+
 For macOS/Linux, create and activate `.venv` with the platform's normal `python3.11 -m venv .venv` and `. .venv/bin/activate` commands; the remaining commands are the same.
 
 ## Use the kiosk

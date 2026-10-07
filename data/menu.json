@@ -98,6 +98,22 @@
         "sugar",
         "addons"
       ]
+    },
+    {
+      "id": "coffee",
+      "name": "Coffee",
+      "category": "Latte",
+      "description": "The good drink",
+      "price": 44.55,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScRve8FCxo2jJJw7frYk7bbcoo0_wq4RUVomzP1uZgeA&s=10",
+      "available": true,
+      "customizations": [
+        "size",
+        "temperature",
+        "sugar",
+        "milk",
+        "addons"
+      ]
     }
   ],
   "options": {

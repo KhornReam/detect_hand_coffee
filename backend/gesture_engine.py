@@ -6,11 +6,13 @@ from .config import (
     FINGER_EXTENSION_MARGIN,
     FIST_CANCEL_HOLD_SECONDS,
     GESTURE_COOLDOWN_SECONDS,
+    OPEN_PALM_HOLD_SECONDS,
     PINCH_DISTANCE_THRESHOLD,
     SWIPE_MIN_DURATION,
     SWIPE_RELEASE_THRESHOLD,
     SWIPE_X_THRESHOLD,
     SWIPE_Y_THRESHOLD,
+    THUMBS_UP_HOLD_SECONDS,
 )
 
 
@@ -26,6 +28,10 @@ class GestureEngine:
         self.pinch_fired = False
         self.fist_since = None
         self.fist_fired = False
+        self.pose_since = None
+        self.pose_name = None
+        self.pose_anchor = None
+        self.pose_armed = True
         self.motion_fired = False
         self.detected = "no_hand"
         self.confidence = 0.0
@@ -85,6 +91,10 @@ class GestureEngine:
             self.pinch_fired = False
             self.fist_since = None
             self.fist_fired = False
+            self.pose_since = None
+            self.pose_name = None
+            self.pose_anchor = None
+            self.pose_armed = True
             self.motion_fired = False
             self.detected, self.confidence = "no_hand", 0.0
             return None
@@ -102,6 +112,9 @@ class GestureEngine:
         # Pinch confirms checkout after a deliberate hold. A held fist cancels
         # the current customer step; it never clears the cart or submits an order.
         if name == "pinch":
+            self.pose_since = None
+            self.pose_name = None
+            self.pose_anchor = None
             self.fist_since = None
             self.fist_fired = False
             self.pinch_since = self.pinch_since or now
@@ -114,6 +127,9 @@ class GestureEngine:
             self.pinch_fired = False
 
         if name == "fist":
+            self.pose_since = None
+            self.pose_name = None
+            self.pose_anchor = None
             self.fist_since = self.fist_since or now
             if now - self.fist_since >= FIST_CANCEL_HOLD_SECONDS and not self.fist_fired:
                 self.fist_fired = True
@@ -122,6 +138,12 @@ class GestureEngine:
         if self.fist_since is not None:
             self.fist_since = None
             self.fist_fired = False
+
+        if name not in ("open_palm", "thumbs_up"):
+            self.pose_since = None
+            self.pose_name = None
+            self.pose_anchor = None
+            self.pose_armed = True
 
         if now - self.last_event < GESTURE_COOLDOWN_SECONDS or self.candidate_frames < 3:
             return None
@@ -140,10 +162,30 @@ class GestureEngine:
                     self.motion_fired = False
                 if not self.motion_fired and abs(dx) > SWIPE_X_THRESHOLD and abs(dx) > abs(dy) * 1.12:
                     self.motion_fired = True
+                    if name in ("open_palm", "thumbs_up"):
+                        self.pose_armed = False
                     return self._emit("next" if dx < 0 else "previous", now)
                 if not self.motion_fired and abs(dy) > SWIPE_Y_THRESHOLD and abs(dy) > abs(dx) * 1.12:
                     self.motion_fired = True
+                    if name in ("open_palm", "thumbs_up"):
+                        self.pose_armed = False
                     return self._emit("scroll_up" if dy < 0 else "scroll_down", now)
+
+        # A stationary hold activates these helpful poses. Re-anchoring after
+        # movement keeps horizontal and vertical swipes from firing a pose action.
+        if self.pose_armed and name in ("open_palm", "thumbs_up") and confidence >= (0.70 if name == "open_palm" else 0.78):
+            anchor = (points[9][0], points[9][1])
+            if name != self.pose_name or self.pose_anchor is None:
+                self.pose_name, self.pose_since, self.pose_anchor = name, now, anchor
+            elif hypot(anchor[0] - self.pose_anchor[0], anchor[1] - self.pose_anchor[1]) > 0.055:
+                self.pose_since, self.pose_anchor = now, anchor
+            hold = OPEN_PALM_HOLD_SECONDS if name == "open_palm" else THUMBS_UP_HOLD_SECONDS
+            if self.candidate_frames >= 4 and now - self.pose_since >= hold:
+                self.pose_since = None
+                self.pose_name = None
+                self.pose_anchor = None
+                self.pose_armed = False
+                return self._emit("browse" if name == "open_palm" else "select", now)
 
         return None
 
